@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const { MESSAGES } = require('../utils/constants');
 
 const ConflictError = require('../errors/ConflictError');
 const NotFoundError = require('../errors/NotFoundError');
@@ -20,7 +21,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.code === 11000) {
-        return next(new ConflictError('Email already registered'));
+        return next(new ConflictError(MESSAGES.EMAIL_TAKEN));
       }
       return next(err);
     });
@@ -33,11 +34,11 @@ module.exports.login = (req, res, next) => {
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new UnauthorizedError('Incorrect email or password');
+        throw new UnauthorizedError(MESSAGES.WRONG_CREDENTIALS);
       }
       return bcrypt.compare(password, user.password).then((matches) => {
         if (!matches) {
-          throw new UnauthorizedError('Incorrect email or password');
+          throw new UnauthorizedError(MESSAGES.WRONG_CREDENTIALS);
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
           expiresIn: '7d',
@@ -52,7 +53,7 @@ module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User not found');
+        throw new NotFoundError(MESSAGES.USER_NOT_FOUND);
       }
       res.send({ email: user.email, name: user.name });
     })
