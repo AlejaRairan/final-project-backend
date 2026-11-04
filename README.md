@@ -2,7 +2,9 @@
 
 REST API for [CountriesExplorer](https://github.com/AlejaRairan/final-project-frontend), a web app to search countries and save the ones you like. The API handles user registration, login with JWT and the countries each user saves.
 
-**API domain:** `https://api.YOUR-DOMAIN` (to be completed after deployment)
+
+- Frontend: `https://wtwrr.chickenkiller.com`
+- API: `https://api.wtwrr.chickenkiller.com`
 
 ## Technologies
 
