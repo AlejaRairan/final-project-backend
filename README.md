@@ -2,9 +2,8 @@
 
 REST API for [CountriesExplorer](https://github.com/AlejaRairan/final-project-frontend), a web app to search countries and save the ones you like. The API handles user registration, login with JWT and the countries each user saves.
 
-
-- Frontend: `https://wtwrr.chickenkiller.com`
-- API: `https://api.wtwrr.chickenkiller.com`
+Frontend: https://wtwrr.chickenkiller.com
+API: https://api.wtwrr.chickenkiller.com
 
 ## Technologies
 
@@ -100,9 +99,11 @@ Authorization: Bearer <token>
 
 Requirements: Node.js and a running MongoDB (default `mongodb://127.0.0.1:27017`).
 
-```bash
-npm install
-npm run dev
+  ```bash
++ git clone https://github.com/AlejaRairan/final-project-backend.git
++ cd final-project-backend
+  npm install
+  npm run dev
 ```
 
 The API runs on `http://localhost:3000`. In development no `.env` file is needed: the default values are used.
